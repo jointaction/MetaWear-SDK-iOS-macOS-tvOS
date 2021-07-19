@@ -122,15 +122,26 @@ public class MetaWear: NSObject {
     public var apiAccessExecutor: Executor {
         return Executor.queue(apiAccessQueue)
     }
-    /// Smooth out the RSSI into something less jumpy
-    public func averageRSSI(lastNSeconds: Double = 5.0) -> Double? {
+/// Smooth out the RSSI into something less jumpy
+    public func averageRSSI(nItems: Int = 5) -> Int? {
         return adQueue.sync {
-            let filteredRSSI = rssiHistory.filter { -$0.0.timeIntervalSinceNow < lastNSeconds }
-            guard filteredRSSI.count > 0 else {
+            let filteredRSSI = rssiHistory.suffix(nItems)
+            guard !filteredRSSI.isEmpty else {
                 return nil
             }
             let sumArray = filteredRSSI.reduce(0.0) { $0 + $1.1 }
-            return sumArray / Double(filteredRSSI.count)
+            return Int(sumArray / Double(filteredRSSI.count))
+        }
+    }
+    //    /// Smooth out the Battery into something less jumpy
+    public func averageBattery(nItems: Int = 5) -> Int? {
+        return adQueue.sync {
+            let filteredBattery = batteryHistory.suffix(nItems)
+            guard !filteredBattery.isEmpty else {
+                return nil
+            }
+            let chargeSum = filteredBattery.reduce(0.0) { $0 + Double($1.1) }
+            return Int(chargeSum / Double(filteredBattery.count))
         }
     }
     
@@ -264,7 +275,8 @@ public class MetaWear: NSObject {
     fileprivate var commandCount = 0
     
     fileprivate var serviceCount = 0
-    var rssiHistory: [(Date, Double)] = []
+    public var rssiHistory: [(Date, Double)] = []
+    public var batteryHistory: [(Date, Double)] = []
 
     init(peripheral: CBPeripheral, scanner: MetaWearScanner) {
         self.peripheral = peripheral
