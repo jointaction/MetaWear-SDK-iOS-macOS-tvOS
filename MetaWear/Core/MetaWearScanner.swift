@@ -194,7 +194,7 @@ public class MetaWearScanner: NSObject {
         }
     }
     
-    func centralStateTask() -> Task<()> {
+    public func centralStateTask() -> Task<()> {
         let source = TaskCompletionSource<()>()
         bleQueue.async {
             self.updateCentralStateSource(source)
