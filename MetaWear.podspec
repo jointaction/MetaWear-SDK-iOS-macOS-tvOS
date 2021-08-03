@@ -16,9 +16,9 @@ Pod::Spec.new do |s|
                            :tag => s.version.to_s, :submodules => true }
 
   s.platform = :ios, :osx, :tvos, :watchos
-  s.ios.deployment_target = '14.5'
+  s.ios.deployment_target = '14.3'
   s.osx.deployment_target = '11.3'
-  s.tvos.deployment_target = '14.5'
+  s.tvos.deployment_target = '14.3'
   s.watchos.deployment_target = '7.4'
 
   s.swift_version = '5.0'
@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Mocks' do |s|
-    s.ios.deployment_target = '14.5'
+    s.ios.deployment_target = '14.3'
     s.osx.deployment_target = '11.3'
       
     s.source_files = 'MetaWear/Mocks/**/*'
@@ -68,7 +68,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'DFU' do |s|
-      s.ios.deployment_target = '14.5'
+      s.ios.deployment_target = '14.3'
       s.osx.deployment_target = '11.3'
 
       s.source_files = 'MetaWear/DFU/**/*'
