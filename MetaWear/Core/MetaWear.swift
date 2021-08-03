@@ -94,7 +94,7 @@ public class MetaWear: NSObject {
     /// Details about the device, available only after you have connected once
     public internal(set) var info: DeviceInformation?
     /// Indication that the BLE link is connected and the MetaWearCpp library is properly initialized
-    public private(set) var isConnectedAndSetup = false
+    @objc dynamic public private(set) var isConnectedAndSetup = false
     /// Check if this advertised or discovered as a MetaBoot
     public private(set) var isMetaBoot = false
     /// Get the most update to date name of the device
