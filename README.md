@@ -6,11 +6,10 @@
 
 ![alt tag](https://raw.githubusercontent.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/master/Images/Metawear.png)
 
-SDK for creating MetaWear apps that run in the Apple ecosystem.  
+SDK for creating MetaWear apps that run in the Apple ecosystem. This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/MetaWear-SDK-Cpp) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful. Check out the starter [App](https://github.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/tree/master/StarterProject) and the very through example App [App](https://github.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/tree/master/ExampleApp) for sample code.
 
-This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/MetaWear-SDK-Cpp) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.
-
-Also, check out the starter [App](https://github.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/tree/master/StarterProject) and the very through example App [App](https://github.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/tree/master/ExampleApp) for sample code.
+### Like Combine more than Bolts? 😎
+We're developing a [Swift Combine SDK](https://github.com/mbientlab/MetaWear-Swift-Combine-SDK), now in beta with interactive documentation and two sample apps.
 
 ### Overview
 
@@ -23,7 +22,7 @@ The MetaWear hardware comes pre-loaded with a wirelessly upgradeable firmware, s
 ### Requirements
 - [MetaWear board](https://mbientlab.com/store/)
 - [Apple ID](https://appleid.apple.com/), you can now get started for free!  Once you are ready to submit an App to the App Store, you need a paid [Apple Developer Account](https://developer.apple.com/programs/ios/).
-- Device running iOS 10.0 or later with Bluetooth 4.0/5.0 (iOS 13+, XCODE12+, BLE5.0 recommended)
+- Device running iOS 14.0 or later with Bluetooth 4.0/5.0 (iOS 13+, XCODE12+, BLE5.0 recommended)
 
 > REQUIREMENT NOTES  
 The iOS simulator doesn’t support Bluetooth 4.0/5.0, so test apps must be run on a real iOS device which requires a developer account.  Bluetooth 4.0 available on iPhone 4S+, iPad 3rd generation+, or iPod Touch 5th generation.
@@ -62,15 +61,15 @@ sudo gem install cocoapods
 Then list the dependencies in a text file named Podfile in your Xcode project directory:
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '14.0'
 use_frameworks!
 target 'MyApp' do
     // LOCAL
-    pod "MetaWear", :subspecs => ['UI', 'AsyncUtils', 'Mocks', 'DFU']
+    pod "MetaWear", :subspecs => ['UI', 'AsyncUtils', 'DFU']
     // COCOA POD
     pod "MetaWear"
     // COCOA POD RELEASE SPECIFIC
-    pod "MetaWear", '~> '4.0.1'
+    pod "MetaWear", '~> '4.0.2'
 end
 ```
 Tip: CocoaPods provides a pod init command to create a Podfile with smart defaults. You should use it.

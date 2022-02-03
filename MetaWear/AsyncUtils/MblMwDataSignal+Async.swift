@@ -419,38 +419,41 @@ extension OpaquePointer {
     }
     
     /// Tasky interface to mbl_mw_dataprocessor_fuser_create
-    public func fuserCreate(with: OpaquePointer) -> Task<OpaquePointer> {
-        let source = TaskCompletionSource<OpaquePointer>()
-        var array: [OpaquePointer?] = [with]
-        let code = mbl_mw_dataprocessor_fuser_create(self, UnsafeMutablePointer(&array), 1,  bridgeRetained(obj: source)) { (context, delta) in
-            let source: TaskCompletionSource<OpaquePointer> = bridgeTransfer(ptr: context!)
-            if let delta = delta {
-                source.trySet(result: delta)
-            } else {
-                source.trySet(error: MetaWearError.operationFailed(message: "could not create fuser"))
+    public func fuserCreate(with: OpaquePointer?) -> Task<OpaquePointer> {
+        withUnsafePointer(to: with) { w in
+            let mutable = UnsafeMutablePointer<OpaquePointer?>(mutating: w)
+            let source = TaskCompletionSource<OpaquePointer>()
+
+            let code = mbl_mw_dataprocessor_fuser_create(self, mutable, 1, bridgeRetained(obj: source)) { (context, delta) in
+                let source: TaskCompletionSource<OpaquePointer> = bridgeTransfer(ptr: context!)
+                if let delta = delta {
+                    source.trySet(result: delta)
+                } else {
+                    source.trySet(error: MetaWearError.operationFailed(message: "could not create fuser"))
+                }
             }
+            errorCheck(code: Int(code), source: source)
+            return source.task
         }
-        errorCheck(code: Int(code), source: source)
-        return source.task
     }
 
 }
 
 private func errorForCode(_ code: Int) -> String? {
     switch code {
-    case STATUS_WARNING_UNEXPECTED_SENSOR_DATA:
+    case MBL_MW_STATUS_WARNING_UNEXPECTED_SENSOR_DATA:
         return "Data unexpectedly received from a sensor"
-    case STATUS_WARNING_INVALID_PROCESSOR_TYPE:
+    case MBL_MW_STATUS_WARNING_INVALID_PROCESSOR_TYPE:
         return "Invalid processor passed into a dataprocessor function"
-    case STATUS_ERROR_UNSUPPORTED_PROCESSOR:
+    case MBL_MW_STATUS_ERROR_UNSUPPORTED_PROCESSOR:
         return "Processor not supported for the data signal"
-    case STATUS_WARNING_INVALID_RESPONSE:
+    case MBL_MW_STATUS_WARNING_INVALID_RESPONSE:
         return "Invalid response receieved from the MetaWear notify characteristic"
-    case STATUS_ERROR_TIMEOUT:
+    case MBL_MW_STATUS_ERROR_TIMEOUT:
         return "Timeout occured during an asynchronous operation"
-    case STATUS_ERROR_SERIALIZATION_FORMAT:
+    case MBL_MW_STATUS_ERROR_SERIALIZATION_FORMAT:
         return "Cannot restore API state given the input serialization format"
-    case STATUS_ERROR_ENABLE_NOTIFY:
+    case MBL_MW_STATUS_ERROR_ENABLE_NOTIFY:
         return "Failed to enable notifications"
     default:
        return nil
