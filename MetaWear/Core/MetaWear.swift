@@ -115,14 +115,15 @@ public class MetaWear: NSObject {
     }
     /// In order to ensure crash free behavior of the MetaWearCpp library, all calls into
     /// it should occur from this queue
-    public var apiAccessQueue: DispatchQueue {
-        return scanner?.bleQueue ?? DispatchQueue.global()
-    }
+    public lazy var apiAccessQueue: DispatchQueue = DispatchQueue(label: "com.mbientlab.queues.\(self.mac)")
+//     public var apiAccessQueue: DispatchQueue {
+//         return scanner?.bleQueue ?? DispatchQueue.global()
+//     }
     /// Bolts-Swift shortcut to apiAccessQueue
     public var apiAccessExecutor: Executor {
         return Executor.queue(apiAccessQueue)
     }
-/// Smooth out the RSSI into something less jumpy
+    /// Smooth out the RSSI into something less jumpy
     public func averageRSSI(nItems: Int = 5) -> Int? {
         return adQueue.sync {
             let filteredRSSI = rssiHistory.suffix(nItems)
@@ -133,7 +134,7 @@ public class MetaWear: NSObject {
             return Int(sumArray / Double(filteredRSSI.count))
         }
     }
-    //    /// Smooth out the Battery into something less jumpy
+    /// Smooth out the Battery into something less jumpy
     public func averageBattery(nItems: Int = 5) -> Int? {
         return adQueue.sync {
             let filteredBattery = batteryHistory.suffix(nItems)
