@@ -340,7 +340,7 @@ public class MetaWear: NSObject {
         logDelegate?.logWith(.info, message: "didDisconnectPeripheral: \(String(describing: error))")
     }
     func invokeDisconnectionHandlers(error: Error?) {
-        assert(DispatchQueue.isBleQueue)
+//         assert(DispatchQueue.isBleQueue)
         isConnectedAndSetup = false
         // Inform the C++ SDK
         onDisconnectCallback?(UnsafeRawPointer(board), 0)
@@ -360,7 +360,7 @@ public class MetaWear: NSObject {
         commandCount = 0
     }
     func invokeConnectionHandlers(error: Error?, cancelled: Bool) {
-        assert(DispatchQueue.isBleQueue)
+//         assert(DispatchQueue.isBleQueue)
         if !cancelled && error == nil {
             self.isConnectedAndSetup = true
         }
