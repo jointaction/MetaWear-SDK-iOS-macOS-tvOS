@@ -85,7 +85,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create accounter timer"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -101,7 +101,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create accounter counter"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -117,7 +117,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create accumulator"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -133,7 +133,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create accumulator"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
 
@@ -149,7 +149,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create counter"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -165,7 +165,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create counter"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -181,7 +181,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create averager"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -197,7 +197,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create high pass"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -213,7 +213,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create low pass"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -229,7 +229,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create buffer"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
 
@@ -245,7 +245,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create rms"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -261,7 +261,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create rss"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
 
@@ -277,7 +277,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create comparator"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -309,7 +309,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create delta"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -335,7 +335,7 @@ extension OpaquePointer {
         case .some(false):
             code = mbl_mw_dataprocessor_math_create_unsigned(self, op, rhs, bridgeRetained(obj: source), handler)
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -351,7 +351,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create packer"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -367,7 +367,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create passthrough"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -383,7 +383,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create pulse"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -399,7 +399,7 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create sample"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -414,7 +414,8 @@ extension OpaquePointer {
                 source.trySet(error: MetaWearError.operationFailed(message: "could not create threshold"))
             }
         }
-        errorCheck(code: Int(code), source: source)
+        
+        errorCheck(code: Int32(code), source: source)
         return source.task
     }
     
@@ -432,14 +433,14 @@ extension OpaquePointer {
                     source.trySet(error: MetaWearError.operationFailed(message: "could not create fuser"))
                 }
             }
-            errorCheck(code: Int(code), source: source)
+            errorCheck(code: Int32(code), source: source)
             return source.task
         }
     }
 
 }
 
-private func errorForCode(_ code: Int) -> String? {
+private func errorForCode(_ code: Int32) -> String? {
     switch code {
     case MBL_MW_STATUS_WARNING_UNEXPECTED_SENSOR_DATA:
         return "Data unexpectedly received from a sensor"
@@ -460,7 +461,7 @@ private func errorForCode(_ code: Int) -> String? {
     }
 }
 
-private func errorCheck<T>(code: Int, source: TaskCompletionSource<T>) {
+private func errorCheck<T>(code: Int32, source: TaskCompletionSource<T>) {
     if let error = errorForCode(code) {
         source.trySet(error: MetaWearError.operationFailed(message: error))
     }
