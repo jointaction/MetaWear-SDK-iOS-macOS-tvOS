@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
                          DESC
   s.author             = { 'Laura Kassovic' => 'laura@mbientlab.com' }
 
-  s.source             = { :git => 'https://github.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS.git',
+  s.source             = { :git => 'https://github.com/jointaction/MetaWear-SDK-iOS-macOS-tvOS.git',
                            :tag => s.version.to_s, :submodules => true }
 
   s.platform = :ios, :osx, :tvos, :watchos
